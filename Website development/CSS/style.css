@@ -1,0 +1,378 @@
+body{
+    min-width: 860px;
+}
+.topImg {
+    float:left;
+    padding-right: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.outernav{
+    background: black;
+}
+.topnav{
+    overflow: hidden;
+    background-color: #000000;
+    padding-left: 100px;
+    padding-right: 100px;
+    align-content: center;
+    margin-top: 0;
+    max-width: 1350px;
+    margin-left:auto;
+    margin-right: auto;
+}
+.topnav li{
+    font-family: 'Staatliches', cursive;
+    color: #FFF;
+    list-style-type: none;
+    display: inline;
+    float: left;
+    text-align: center;
+    padding: 20px 30px;
+    align-content: center;
+}
+.topnav .active{
+    background-color: #FFF;
+    color:black;
+}
+.topnav .right{
+    float:right;
+    padding-right: 30px;
+}
+.topnav li:hover{
+    background-color: #F5F5F5;
+    color: black;
+}
+.topnav a{
+    text-decoration: none;
+    color: white;
+}
+.topnav .active a{
+    color: black;
+}
+body{
+    margin: 0;
+}
+.home .container{
+    position: relative;
+}
+.home .container .centered{
+    position: absolute;
+    top: 85%;
+    right: 10%;
+    color: white;
+    font-size: 50px;
+    font-family: 'Luckiest Guy', cursive;
+}
+.home .container img{
+    padding-bottom: 16px;
+}
+.home .last-container img{
+    padding-bottom: 0;
+}
+.contact{
+    text-align: center;
+    background-color: #F3F3F3;
+}
+.contact header{
+    font-family: 'Staatliches', cursive;
+    font-size: 60px;
+}
+.contact p{
+    font-family: 'Staatliches', cursive;
+    color: #5f6468;
+    font-size: 20px;
+}
+.contact .details{
+    text-align: left;
+    padding-bottom: 30px;
+}
+.contact .containing{
+    margin-top: 50px;
+    width: 500px;
+    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contact .details label{
+    font-family: 'Staatliches', cursive;
+    background-color: black;
+    color: white;
+    width: 10%;
+    height: 30px;
+    float:left;
+    padding: 10px 100px 0 20px;
+    margin-right: 40px;
+}
+.contact .details input{
+    padding: 10px 5px;
+    width:250px;
+}
+.contact .details textarea{
+    width:250px;
+}
+.contact .submit{
+    font-family: 'Staatliches', cursive;
+    float: left;
+    background-color: #C5462B;
+    padding: 10px 20px;
+    color: white;
+    font-size: 20px;
+}
+.product header{
+    font-family: 'Staatliches', cursive;
+    font-size: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.product .selection2{
+    padding-left: 5px;
+}
+.product .selection,
+.product .selection2{
+    display: inline-block;
+}
+.product .selection li,
+.product .selection2 li{
+    text-decoration: none;
+    list-style-type: none;
+    display: inline;
+    font-family: 'Staatliches', cursive;
+    padding-left: 30px;
+}
+.product .selection li a,
+.product .selection2 li a{
+    text-decoration: none;
+    color: black;
+}
+.product .selection li a:hover,
+.product .selection2 li a:hover{
+    color: grey;
+}
+.product .dropDownMenu{
+    display: none;
+    /* display: inline-block; */
+    position: absolute;
+    background-color: white;
+    min-width: 120px;
+    font-family: 'Staatliches', cursive;
+    box-shadow: 0px 8px 12px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: 70px;
+    top: 185px;
+}
+.product .selection:hover .dropDownMenu{
+    display: block;
+}
+.product .dropDownMenu label:hover{
+    color:grey;
+}
+
+.product .serv{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.product .serv div{
+    width:33%;
+}
+.product .serv div img{
+    padding: 50px 10px;
+    width: auto;
+    border: 5px black solid;
+}
+.product .serv img:hover{
+    opacity: 0.5;
+}
+.product .serv .onClickImgOverText{
+    position: relative;
+}
+.product .serv .onClickImgOverText .selectionButton{
+    display: flow-root;
+    font-family: 'Staatliches', cursive;
+    font-size:15px;
+    background-color: black;
+    color:white;
+    width:20%;
+    left:44.5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.product .nameOfProduct,
+.product .priceOfProduct{
+    display: flow-root;
+    text-align: center;
+    margin-left:auto;
+    margin-right: auto;
+    font-family: 'Staatliches', cursive;
+}
+.product .nameOfProduct{
+    font-size:30px;
+}
+.login header,
+.register header,
+.cart header{
+    font-family: 'Staatliches', cursive;
+    font-size: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.login .loginField{
+    text-align: center;
+    margin-top: 10rem;
+}
+
+.login .loginField .details label,
+.register .registerField .containing label,
+.submitO label{
+    font-family: 'Staatliches', cursive;
+    background-color: black;
+    color: white;
+    width: 10%;
+    height: 30px;
+    font-size: 1.5rem;
+    padding: 0.5rem 3rem 1rem 1rem;
+    margin-right: 1rem;
+}
+.login .loginField .details input,
+.register .registerField .containing input,
+.submitO input{
+    padding: 1rem 1rem;
+    width:250px;
+}
+.login .loginField .details{
+    margin-bottom: 1rem;
+}
+.login .loginField .button,
+.register .registerField button,
+.submitO button{
+    font-family: 'Staatliches', cursive;
+    background-color: #C5462B;
+    padding: 0.5rem 2.5rem;
+    color: white;
+    font-size: 20px;
+    margin: 11rem 1rem;
+}
+.register .containing,
+.submitO .containing{
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10rem;
+    text-align: center;
+}
+.register .seperation,
+.submitO .seperation{
+    margin-bottom: 1rem;
+}
+.register .seperation .last{
+    padding-right: 88px!important;
+}
+.register .button,
+.submitO .button{
+    text-align: center;
+}
+.orderH header,
+.submitO header{
+    font-family: 'Staatliches', cursive;
+    font-size: 60px;
+    text-align: center;
+}
+.orderH input{
+    padding:1rem;
+    font-size: 50px;
+}
+.orderH h2{
+    margin-top: 8rem;    
+    font-family: 'Staatliches', cursive;
+}
+.orderH .belowTxt{
+    margin-top: 0!important;
+}
+.orderH form{
+    padding-left: 50px;
+}
+.orderH button{
+    font-family: 'Staatliches', cursive;
+    background-color: #C5462B;
+    padding: 0.5rem 2.5rem;
+    color: white;
+    font-size: 20px;
+    margin-left: 660px;
+    margin-top: 20px;
+}
+.submitO .seperation .extraPad3 {
+    padding-right: 110px!important;
+}
+.submitO .seperation .extraPad2 {
+    padding-right: 105px!important;
+}
+.submitO .seperation .extraPad1 {
+    padding-right: 135px!important;
+}
+.cart label{
+    font-family: 'Staatliches', cursive;
+    background-color: black;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    width: 33%;
+}
+.cart .centralize{
+    text-align: center;
+    margin-top: 10rem;
+    display: flex;
+}
+.cart .img{
+    width: 150px;
+    height: 150px;
+}
+.cart .flexible{
+    display:flex;
+    margin-top: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px black solid;
+}
+.cart .cart-img{
+    width: 33%;
+    text-align: center;
+}
+.cart .item-name{
+    margin-bottom:auto;
+    font-family: 'Staatliches', cursive;
+}
+.cart .price{
+    width: 33%;
+    text-align:center;
+    margin-top: 50px;
+    font-family: 'Staatliches', cursive;
+    font-size: 30px;
+}
+.cart .quantity{
+    width:33%;
+    text-align: center;
+    margin-top: 50px;
+}
+.cart .totalPrice{
+    font-family: 'Staatliches', cursive;
+    text-align: right;
+    width: 87%;
+    margin: 10px 10px 0 0;
+    font-size: 2rem;
+}
+.cart button{
+    font-family: 'Staatliches', cursive;
+    background-color: #C5462B;
+    padding: 10px 2.5rem;
+    color: white;
+    font-size: 20px;
+}
+.cart input{
+    padding: 10px 0 11px 5px;
+    font-size:20px;
+    width: 3rem;
+}
