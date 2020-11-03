@@ -24,9 +24,6 @@ if (mysqli_connect_errno()) {
         $category_array[$key["name"]] = $key["category"];
     }
     
-    arsort ($price_array);
-
-    
     if (isset($_GET["Ascending"])){
         asort($price_array);
     }
@@ -49,12 +46,12 @@ if (mysqli_connect_errno()) {
     <head>
         <div class='outernav'>
             <ul class="topnav">
-                <a href="Home.html"><img src="CSS/Homey.png" alt="" class='topImg'></a>
-                <li><a href="Home.html">Home</a></li>
+                <a href="Home.php"><img src="CSS/Homey.png" alt="" class='topImg'></a>
+                <li><a href="Home.php">Home</a></li>
                 <li class='active'><a href="Product.php">Product</a></li>
-                <li><a href="Contact.html">Contact</a></li>
-                <li class='right'><a href="Cart.html">Cart</a></li>
-                <li class='right'><a href="Account.html">Account</a></li>
+                <li><a href="Contact.php">Contact</a></li>
+                <li class='right'><a href="Cart.php">Cart</a></li>
+                <li class='right'><a href="Account.php">Account</a></li>
             </ul>
         </div>
     </head>
