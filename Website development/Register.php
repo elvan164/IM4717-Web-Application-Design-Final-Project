@@ -94,35 +94,35 @@
                         <tr>
                             <td><label for="name" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Name</label></td>
-                            <td><input type="text" id="name" required></td>
+                            <td><input type="text" name="name" required></td>
                         </tr>
                     </div>
                     <div class='seperation'>
                         <tr>
                             <td><label for="email" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Email</label></td>
-                            <td><input type="email" id="email" required></td>
+                            <td><input type="email" name="email" required></td>
                         </tr>
                     </div>
                     <div class='seperation'>
                         <tr>
                             <td><label for="address" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Address</label></td>
-                            <td><input type="text" id="address" required></td>
+                            <td><input type="text" name="address" required></td>
                         </tr>
                     </div>
                     <div class='seperation'>
                         <tr>
                             <td><label for="unit_no" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Unit No.</label></td>
-                            <td><input type="text" id="unit_no" required></td>
+                            <td><input type="text" name="unit_no" required></td>
                         </tr>
                     </div>
                     <div class='seperation'>
                         <tr>
                             <td><label for="postal_code" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Postal Code</label></td>
-                            <td><input type="text" id="postal_code" required></td>
+                            <td><input type="text" name="postal_code" required></td>
                         </tr>
                     </div>
                 </div>
