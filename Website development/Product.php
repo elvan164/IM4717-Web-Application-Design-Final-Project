@@ -1,5 +1,48 @@
-<!DOCTYPE html>
-<html class='product'>
+<?php
+
+$product_array = array();
+
+foreach ($_POST as $key => $val) {
+    $product_array[$key] = $val;
+}
+
+@ $db = new mysqli('localhost', 'f36ee', 'f36ee', 'f36ee');
+
+if (mysqli_connect_errno()) {
+    echo "Error: Could not connect to database.  Please try again later.";
+    exit;
+ }
+
+    $price_array = array();
+    $category_array = array();
+    $query = "SELECT name,price,category FROM Product";
+    $result  = $db->query($query);
+    
+    
+    foreach ($result as $key) {
+        $price_array[$key["name"]] = $key["price"];
+        $category_array[$key["name"]] = $key["category"];
+    }
+    
+    arsort ($price_array);
+
+    
+    if (isset($_GET["Ascending"])){
+        asort($price_array);
+    }
+
+    if (isset($_GET["Descending"])){
+        arsort($price_array);
+    }
+
+
+    $db->close();
+
+
+
+?>
+
+<html lang = "en" class='product'>
     <link rel="stylesheet" href="CSS/style.css">
     <script src="Product.js" async></script>
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
@@ -16,6 +59,7 @@
         </div>
     </head>
     <body>
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
         <header>Product</header>
         <ul class='selection'>
             <li  class='productType'>Product Type</li>
@@ -23,134 +67,139 @@
             <label id='headphone'>Headphone</label><br>
             <label id='keyboard'>Keyboard</label><br>
             <label id='laptop'>Laptop</label><br>
-            <label id='iphone'>Apple Products</label>
+            <label id='apple'>Apple Products</label>
         </div>
         </ul>
+        
         <ul class='selection2'>
-            <li><a href="">Price</a></li>
+            <li><input value="Lowest to Highest" name="Ascending" type="submit"
+            style= "background: none; color: inherit; border: none; padding: 0; font: inherit;
+            cursor: pointer; outline: inherit;"/></li>
+            <li><input value="Highest to Lowest" name="Descending" type="submit"
+            style= "background: none; color: inherit; border: none; padding: 0; font: inherit;
+            cursor: pointer; outline: inherit;"/></li>
             <li><a href="">Most Sold Item</a></li>
         </ul>
+        
 
-        <div class='headphone'>
+        <div class="serv">
             <?php
-                    echo "<div class='serv' >";
-                    $headphoneDir = 'CSS/Productpage/Headphone/';
-                    $filesH = scandir($headphoneDir);
-                    foreach($filesH as $file) {
-                        if($file !== "." && $file !== "..") {
-                            echo "<div class='onClickImgOverText'>";
-                            echo "<img style='width: 10rem; height: 10rem; margin: 4rem 0 0 0;' src='$headphoneDir$file' />";
-                            $name = strstr($file, '.', TRUE);
-                            echo "<label class='nameOfProduct'>$name</label>";
-                            echo "<div class='priceOfProduct'> 20cents </div>";
-                            echo "<button class='selectionButton'>Select</button>";
-                            echo "</div>";
-                        }
-                    }
-                    echo "</div>";
-            ?> 
-        </div>
-        <div class='keyboard'>
+                foreach($price_array as $key => $price) {
+                    $name = str_replace("_", " ", $key);
+                    ?>
+
+                    <div class="onClickImgOverText">
+                        <a class="<?php echo $category_array[$key]?>">
+                            <img style="width: 10rem; height: 10rem; margin: 4rem 0 0 0;" src="images/<?php echo $name?>.jpg"/>
+                            <label class='nameOfProduct'><?php echo $name?></label>
+                            <div class='priceOfProduct'> $<?php echo $price_array[$key]?> </div>            
+                            <button class='selectionButton'>Select</button>
+                        </a>
+                    </div>
             <?php
-                    echo "<div class='serv ' >";
-                    $keyboardDir = 'CSS/Productpage/Keyboard/';
-                    $filesK = scandir($keyboardDir);
-                    foreach($filesK as $file) {
-                        if($file !== "." && $file !== "..") {
-                            echo "<div class='onClickImgOverText'>";
-                            echo "<img style='width: 10rem; height: 10rem; margin: 4rem 0 0 0;' src='$keyboardDir$file' />";
-                            $name = strstr($file, '.', TRUE);
-                            echo "<label class='nameOfProduct'>$name</label>";
-                            echo "<div class='priceOfProduct'> 20cents </div>";
-                            echo "<button class='selectionButton'>Select</button>";
-                            echo "</div>";
-                        }
-                    }
-                    echo "</div>";
-            ?> 
-        </div>
-        <div class='iphone'>
-            <?php
-                    echo "<div class='serv ' >";
-                    $iphoneDir = 'CSS/Productpage/Iphone/';
-                    $filesI = scandir($iphoneDir);
-                    foreach($filesI as $file) {
-                        if($file !== "." && $file !== "..") {
-                            echo "<div class='onClickImgOverText'>";
-                            echo "<img style='width: 10rem; height: 10rem; margin: 4rem 0 0 0;' src='$iphoneDir$file' />";
-                            $name = strstr($file, '.', TRUE);
-                            echo "<label class='nameOfProduct'>$name</label>";
-                            echo "<div class='priceOfProduct'> 20cents </div>";
-                            echo "<button class='selectionButton'>Select</button>";
-                            echo "</div>";
-                        }
-                    }
-                    echo "</div>";
+                }
             ?>
         </div>
-        <div class='laptop'>
-            <?php
-                    echo "<div class='serv ' >";
-                    $laptopDir = 'CSS/Productpage/Laptop/';
-                    $filesL = scandir($laptopDir);
-                    foreach($filesL as $file) {
-                        if($file !== "." && $file !== "..") {
-                            echo "<div class='onClickImgOverText'>";
-                            echo "<img style='width: 10rem; height: 10rem; margin: 4rem 0 0 0;' src='$laptopDir$file' />";
-                            $name = strstr($file, '.', TRUE);
-                            echo "<label class='nameOfProduct'>$name</label>";
-                            echo "<div class='priceOfProduct'> 20cents </div>";
-                            echo "<button class='selectionButton'>Select</button>";
-                            echo "</div>";
-                        }
-                    }
-                    echo "</div>";
-            ?>   
-        </div>
+        </form>
         <!-- Pardon me for my inline script testing because browser block my script -->
         <script>
-            var headphoneField = document.querySelector('.headphone');
-            var keyboardField = document.querySelector('.keyboard');
-            var laptopField = document.querySelector('.laptop');
-            var iphoneField = document.querySelector('.iphone');
+
             var selections = document.querySelectorAll('.selectionButton');
 
-            document.getElementById('headphone').addEventListener('click', headphone, false)
-            document.getElementById('keyboard').addEventListener('click', keyboard, false)
-            document.getElementById('laptop').addEventListener('click', laptop, false)
-            document.getElementById('iphone').addEventListener('click', iphone, false)
+            document.getElementById('headphone').addEventListener('click', headphone, false);
+            document.getElementById('keyboard').addEventListener('click', keyboard, false);
+            document.getElementById('laptop').addEventListener('click', laptop, false);
+            document.getElementById('apple').addEventListener('click', apple, false);
 
             for(var i=0; i < selections.length; i++){
-                selections[i].addEventListener('click', cart, false)
+                selections[i].addEventListener('click', cart, false);
             }
 
             function headphone(){
-                headphoneField.style.display = 'block';
-                keyboardField.style.display = 'none';
-                laptopField.style.display = 'none';
-                iphoneField.style.display = 'none';
+                var divs = document.getElementsByTagName("a");
+                for (var i = 0; i<divs.length; i++){
+                    if(divs[i].className == "Headphone"){
+                        divs[i].setAttribute("style", "display: inline;");
+                    }
+                    if(divs[i].className == "Keyboard"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Laptop"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Apple"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                }
             }
+
             function keyboard(){
-                headphoneField.style.display = 'none';
-                keyboardField.style.display = 'block'
-                laptopField.style.display = 'none';
-                iphoneField.style.display = 'none';
+                var divs = document.getElementsByTagName("a");
+                for (var i = 0; i<divs.length; i++){
+                    if(divs[i].className == "Headphone"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Keyboard"){
+                        divs[i].setAttribute("style", "display: inline;");
+                    }
+                    if(divs[i].className == "Laptop"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Apple"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                }
             }
+
             function laptop(){
-                headphoneField.style.display = 'none';
-                keyboardField.style.display = 'none';
-                laptopField.style.display = 'block';
-                iphoneField.style.display = 'none';
+                var divs = document.getElementsByTagName("a");
+                for (var i = 0; i<divs.length; i++){
+                    if(divs[i].className == "Headphone"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Keyboard"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Laptop"){
+                        divs[i].setAttribute("style", "display: inline;");
+                    }
+                    if(divs[i].className == "Apple"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                }
             }
-            function iphone(){
-                headphoneField.style.display = 'none';
-                keyboardField.style.display = 'none'
-                laptopField.style.display = 'none';
-                iphoneField.style.display = 'block';
+
+            function apple(){
+                var divs = document.getElementsByTagName("a");
+                for (var i = 0; i<divs.length; i++){
+                    if(divs[i].className == "Headphone"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Keyboard"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Laptop"){
+                        divs[i].setAttribute("style", "display: none;");
+                    }
+                    if(divs[i].className == "Apple"){
+                        divs[i].setAttribute("style", "display: inline;");
+                    }
+                }
             }
+
             function cart(event){
                 console.log(event);
             }
+
+
+            document.getElementById('price').addEventListener('click', price, false);
+            var L2H = true;
+            function price(){
+                var hi = '<?php asort($price_array);?>';
+                location.reload();
+                
+            }
+
         </script>    
     </body>
 </html>
