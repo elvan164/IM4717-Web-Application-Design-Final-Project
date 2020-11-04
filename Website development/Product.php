@@ -2,11 +2,6 @@
 
 session_start();
 
-$product_array = array();
-
-foreach ($_POST as $key => $val) {
-    $product_array[$key] = $val;
-}
 
 @ $db = new mysqli('localhost', 'f36ee', 'f36ee', 'f36ee');
 
@@ -34,10 +29,16 @@ if (mysqli_connect_errno()) {
         arsort($price_array);
     }
 
+    if (isset($_GET["select"])){
+        $id = $_GET["select"];
+        $amount =(int) $_GET["$id"];
+        if(isset($_SESSION['cart'])){
+        $_SESSION['cart'][$_GET["select"]] += $amount;
+        }
+    }
+
 
     $db->close();
-
-
 
 ?>
 
@@ -81,7 +82,6 @@ if (mysqli_connect_errno()) {
             <li><input value="Highest to Lowest" name="Descending" type="submit"
             style= "background: none; color: inherit; border: none; padding: 0; font: inherit;
             cursor: pointer; outline: inherit;"/></li>
-            <li><a href="">Most Sold Item</a></li>
         </ul>
         
 
@@ -95,8 +95,10 @@ if (mysqli_connect_errno()) {
                         <a class="<?php echo $category_array[$key]?>">
                             <img style="width: 10rem; height: 10rem; margin: 4rem 0 0 0;" src="images/<?php echo $name?>.jpg"/>
                             <label class='nameOfProduct'><?php echo $name?></label>
-                            <div class='priceOfProduct'> $<?php echo $price_array[$key]?> </div>            
-                            <button class='selectionButton' >Select</button>
+                            <div class='priceOfProduct'> $<?php echo $price_array[$key]?> </div>
+                            <input type="number" name="<?php echo $key?>" 
+						    min="0" value='1'>         
+                            <button class='selectionButton' name='select' value = "<?php echo $key?>">Add</button>
                         </a>
                     </div>
             <?php

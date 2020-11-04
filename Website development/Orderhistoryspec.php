@@ -7,45 +7,56 @@ session_start();
 if (mysqli_connect_errno()) {
     echo "Error: Could not connect to database.  Please try again later.";
     exit;
- }
+}
 
-    $price_array = array();
-    $query = "SELECT name,price FROM Product";
-    $result  = $db->query($query);
-    
-    
-    foreach ($result as $key) {
-        $price_array[$key["name"]] = $key["price"];
-    }
-    
-    $total_price = 0.00;
+        $user_id = $_SESSION['user_id'];
+        $order_no = $_SESSION['order_no'];
 
-    if (isset($_GET["update"])){
-        $id = $_GET["update"];
-        $amount =(int) $_GET["$id"];
-        if(isset($_SESSION['cart'])){
-        $_SESSION['cart'][$_GET["update"]] = $amount;
+        $order_array = array();
+        $query = "SELECT * FROM Product_Orders WHERE order_id = '$order_no'";
+        $result=$db->query($query);
+        foreach($result as $key){
+            $order_array[$key["product_id"]] = $key["quantity"];
         }
-        if ($_SESSION['cart'][$_GET["update"]] == 0){
-            unset($_SESSION['cart'][$_GET["update"]]);
+
+        
+        echo $order_no;
+        print_r ($order_array);
+
+        $order_name_array = array();
+        $price_array = array();
+        $query = "SELECT name,price, id FROM Product";
+        $result  = $db->query($query);
+        
+        
+        foreach ($result as $key) {
+            $price_array[$key["name"]] = $key["price"];
+            $order_name_array[$key["id"]] = $key["name"];
         }
-    }
-    $_SESSION['total_price'] = 0.00;
 
-    if (isset($_GET["order"])){
-        echo "<script>window.location.href='Submitorder.php'</script>";
-    }
-
-    $db->close();
-
-?>
+        
+        
+        $total_price = 0.00;
+    
+        if (isset($_GET["update"])){
+            $id = $_GET["update"];
+            $amount =(int) $_GET["$id"];
+            if(isset($_SESSION['cart'])){
+            $_SESSION['cart'][$_GET["update"]] = $amount;
+            }
+            if ($_SESSION['cart'][$_GET["update"]] == 0){
+                unset($_SESSION['cart'][$_GET["update"]]);
+            }
+        }
+        $_SESSION['total_price'] = 0.00;
+    
+?> 
 
 <!DOCTYPE html>
-<html class='cart'>
+<html class='orderH'>
     <link rel="stylesheet" href="CSS/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-    <script src='Javascript/Cart.js' async></script>
     <head>
         <div class='outernav'>
             <ul class="topnav">
@@ -53,49 +64,52 @@ if (mysqli_connect_errno()) {
                 <li><a href="Home.php">Home</a></li>
                 <li><a href="Product.php">Product</a></li>
                 <li><a href="Contact.php">Contact</a></li>
-                <li class='right active'><a href="Cart.php">Cart</a></li>
+                <li class='right'><a href="Cart.php">Cart</a></li>
                 <li class='right'><a href="Account.php">Account</a></li>
                 <?php if ($_SESSION['is_valid'] == true){?>
                     <li class='right'><a href="Logout.php">Logout</a></li>
                     <?php
 			    }?>
+                
+                
             </ul>
         </div>
     </head>
     <body>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
-            <header>Cart</header>
+        <header>Order #<?php echo $order_no?></header>
+        
+        <div class = "cart">
             <div class='centralize'>
                 <label>Item</label>
-                <label>Total Price</label>
                 <label>Quantity</label>
+                <label>Total Price</label>
             </div>
             <div class='cart-items'>
                     <?php
                     
-                        foreach($_SESSION['cart'] as $id => $qty){
+                        foreach($order_array as $product_id => $quantity){
+                            $id = $order_name_array[$product_id];
                             $name = str_replace("_", " ", $id);
+                            $qty = $order_array[$key];
+                            
                     ?>
                             <div class='flexible'>
                                 <div class='cart-img'>
                                     <img src="images/<?php echo $name?>.jpg" class="img">
                                     <div class='item-name'><?php echo $name?></div>
                                 </div>
+                                <div class='quantity' style="font-family: 'Staatliches', cursive; font-size:30px;">      
+                                    <?php echo $quantity?>
+                                </div>
                                 <div class='price'> 
                                     $<?php 
-                                    $total_item_price = $price_array[$id] * $qty;
+                                    $total_item_price = $price_array[$id] * $quantity;
                                     $total_price += $total_item_price;
                                     echo number_format($total_item_price,2)?> 
                                 </div>
-                                <div class='quantity'>      
-                                    <input type="number" class='qtyInput' min='0' max='<?php echo $qty?>'
-                                    name="<?php echo $id?>" value="<?php echo $qty?>">
-
-                                    <button name='update' value ="<?php echo $id?>">
-                                    Update</button>
-                                </div>
+                                
                             </div>
-                    <?php  
+                    <?php   
                          }
                     ?>
             </div>
@@ -103,16 +117,6 @@ if (mysqli_connect_errno()) {
                 $<?php echo number_format($total_price,2) ?>
                 <?php $_SESSION['total_price'] = number_format($total_price,2); ?>
             </div>
-
-            <div style="text-align: right;padding-bottom: 5rem; width:88%;"> 
-                <button name='order' value ="order" 
-                style= "font-family: 'Staatliches', cursive;
-                text-align: right;
-                margin: 10px 10px 0 0;
-                font-size: 2rem;" >
-                Place Order
-                </button>
-            </div>
-        </form>
+        </div>
     </body>
 </html>

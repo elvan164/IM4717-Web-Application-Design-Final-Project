@@ -23,25 +23,7 @@
     </head>
     <body>
         <header>Contact Us</header>
-        <p>Feel free to contact us at 9999-9999 or drop us your inquiries here, and we will reply you back at the soonest possible time.</p>
-        <div class='containing'>
-            <div class='details'>
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name">
-            </div>
-            <div class='details'>
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email">
-            </div>
-            <div class='details'>
-                <label for="subject">Subject:</label>
-                <input type="text" name="subject" id="subject">
-            </div>
-            <div class='details'>
-                <label for="message">Message:</label>
-                <textarea name="message" id="message" cols="30" rows="10"></textarea>
-            </div>
-            <input type="submit" value="submit enquiries" class='submit'>
-        </div>
+        <p>Feel free to contact us at 9999-9999 with all your enquiries.</p>
+        
     </body>
 </html>
