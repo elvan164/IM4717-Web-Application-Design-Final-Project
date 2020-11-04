@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+    session_start();
 
 ?>
 
@@ -18,6 +18,10 @@ session_start();
                 <li><a href="Contact.php">Contact</a></li>
                 <li class='right'><a href="Cart.php">Cart</a></li>
                 <li class='right'><a href="Account.php">Account</a></li>
+                <?php if ($_SESSION['is_valid'] == true){?>
+                    <li class='right'><a href="Logout.php">Logout</a></li>
+                    <?php
+			    }?>
             </ul>
         </div>
     </head>

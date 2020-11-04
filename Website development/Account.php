@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     @ $db = new mysqli('localhost', 'f36ee', 'f36ee', 'f36ee');
 
     if (mysqli_connect_errno()) {
@@ -7,8 +9,11 @@
         exit;
     }
 
+    if ($_SESSION['is_valid'] == true){
+        echo "<script>window.location.href='Orderhistory.php'</script>";
+    }
+
     if (isset($_POST['username'])){
-        
         $login_error;
         $username = $_POST['username'];
         $password = md5($_POST['password']);
@@ -22,6 +27,7 @@
         //returns a query
         if ($result->num_rows>0){
             session_start();
+            $_SESSION['is_valid'] = true;
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['valid_user'] = $username;
             $_SESSION['cart'] = array();
@@ -38,11 +44,6 @@
             
             //redirect to member page
         }
-    
-        
-    
-    
-    
     }
 ?>
 
@@ -59,6 +60,10 @@
                 <li><a href="Contact.php">Contact</a></li>
                 <li class='right'><a href="Cart.php">Cart</a></li>
                 <li class='right active'><a href="Account.php">Account</a></li>
+                <?php if ($_SESSION['is_valid'] == true){?>
+                    <li class='right'><a href="Logout.php">Logout</a></li>
+                    <?php
+			    }?>
             </ul>
         </div>
     </head>

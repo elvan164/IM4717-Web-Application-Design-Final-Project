@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $product_array = array();
 
 foreach ($_POST as $key => $val) {
@@ -52,6 +54,10 @@ if (mysqli_connect_errno()) {
                 <li><a href="Contact.php">Contact</a></li>
                 <li class='right'><a href="Cart.php">Cart</a></li>
                 <li class='right'><a href="Account.php">Account</a></li>
+                <?php if ($_SESSION['is_valid'] == true){?>
+                    <li class='right'><a href="Logout.php">Logout</a></li>
+                    <?php
+			    }?>
             </ul>
         </div>
     </head>
@@ -90,7 +96,7 @@ if (mysqli_connect_errno()) {
                             <img style="width: 10rem; height: 10rem; margin: 4rem 0 0 0;" src="images/<?php echo $name?>.jpg"/>
                             <label class='nameOfProduct'><?php echo $name?></label>
                             <div class='priceOfProduct'> $<?php echo $price_array[$key]?> </div>            
-                            <button class='selectionButton'>Select</button>
+                            <button class='selectionButton' >Select</button>
                         </a>
                     </div>
             <?php
