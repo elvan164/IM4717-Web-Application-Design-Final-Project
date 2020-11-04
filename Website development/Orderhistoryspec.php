@@ -19,10 +19,6 @@ if (mysqli_connect_errno()) {
             $order_array[$key["product_id"]] = $key["quantity"];
         }
 
-        
-        echo $order_no;
-        print_r ($order_array);
-
         $order_name_array = array();
         $price_array = array();
         $query = "SELECT name,price, id FROM Product";
