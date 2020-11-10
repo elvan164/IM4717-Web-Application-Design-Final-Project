@@ -16,14 +16,12 @@
                 <li class='right'><a href="Account.php">Account</a></li>
                 <?php if ($_SESSION['is_valid'] == true){?>
                     <li class='right'><a href="Logout.php">Logout</a></li>
-                    <?php
-			    }?>
+                <?php}?>
             </ul>
         </div>
     </head>
     <body>
         <header>Contact Us</header>
         <p>Feel free to contact us at 9999-9999 with all your enquiries.</p>
-        
     </body>
 </html>

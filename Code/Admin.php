@@ -2,7 +2,6 @@
 
 session_start();
 
-
 @ $db = new mysqli('localhost', 'f36ee', 'f36ee', 'f36ee');
 
 if (mysqli_connect_errno()) {
@@ -31,13 +30,8 @@ foreach ($update_array as $key => $value) {
         $price_array[$key["name"]] = $key["price"];
         $category_array[$key["name"]] = $key["category"];
     }
-    
-    
-    
-    
 
     $db->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -71,32 +65,31 @@ foreach ($update_array as $key => $value) {
                 <label>New Price</label>
             </div>
             <div class='cart-items'>
-                    <?php
-                    
-                        foreach($price_array as $key => $price) {
-                        $name = str_replace("_", " ", $key);
-                        ?>
-                            <div class='flexible'>
-                                <div class='cart-img'>
-                                    <img src="images/<?php echo $name?>.jpg" class="img">
-                                    <div class='item-name'><?php echo $name?></div>
-                                </div>
-                                <div class='price'> 
-                                    $<?php 
-                                    echo $price_array[$key]?>
-                                </div>
-                                <div class='quantity'>      
-                                    <input type="number" class='qtyInput' min='0' max='<?php echo $qty?>'
-                                    name="<?php echo $key?>" value="<?php echo $price_array[$key]?>"
-                                    step="0.01" style="min-width: 5rem;">
+                <?php
+                    foreach($price_array as $key => $price) {
+                    $name = str_replace("_", " ", $key);
+                ?>
+                    <div class='flexible'>
+                        <div class='cart-img'>
+                            <img src="images/<?php echo $name?>.jpg" class="img">
+                            <div class='item-name'><?php echo $name?></div>
+                        </div>
+                        <div class='price'> 
+                            $<?php 
+                            echo $price_array[$key]?>
+                        </div>
+                        <div class='quantity'>      
+                            <input type="number" class='qtyInput' min='0' max='<?php echo $qty?>'
+                            name="<?php echo $key?>" value="<?php echo $price_array[$key]?>"
+                            step="0.01" style="min-width: 5rem;">
 
-                                    <button name='update' value ="<?php echo $id?>">
-                                    Update</button>
-                                </div>
-                            </div>
-                    <?php  
-                         }
-                    ?>
+                            <button name='update' value ="<?php echo $id?>">
+                            Update</button>
+                        </div>
+                    </div>
+                <?php  
+                    }
+                ?>
             </div>
         </form>
     </body>

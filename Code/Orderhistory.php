@@ -8,8 +8,6 @@ if (mysqli_connect_errno()) {
     echo "Error: Could not connect to database.  Please try again later.";
     exit;
 }
-
-
     if (isset($_GET['submit'])){
         $user_id = $_SESSION['user_id'];
         $order_no = $_GET['order_no'];
@@ -27,8 +25,6 @@ if (mysqli_connect_errno()) {
             echo '<script> alert("Please check your order no.")</script>';
         }
     }   
-
-
 ?> 
 
 <!DOCTYPE html>
@@ -47,10 +43,7 @@ if (mysqli_connect_errno()) {
                 <li class='right'><a href="Account.php">Account</a></li>
                 <?php if ($_SESSION['is_valid'] == true){?>
                     <li class='right'><a href="Logout.php">Logout</a></li>
-                    <?php
-			    }?>
-                
-                
+                <?php}?>
             </ul>
         </div>
     </head>

@@ -2,7 +2,6 @@
 
 session_start();
 
-
 @ $db = new mysqli('localhost', 'f36ee', 'f36ee', 'f36ee');
 
 if (mysqli_connect_errno()) {
@@ -14,7 +13,6 @@ if (mysqli_connect_errno()) {
     $category_array = array();
     $query = "SELECT name,price,category FROM Product";
     $result  = $db->query($query);
-    
     
     foreach ($result as $key) {
         $price_array[$key["name"]] = $key["price"];
@@ -44,7 +42,6 @@ if (mysqli_connect_errno()) {
             }
         }
     }
-
 
     $db->close();
 
@@ -92,7 +89,6 @@ if (mysqli_connect_errno()) {
             cursor: pointer; outline: inherit;"/></li>
         </ul>
         
-
         <div class="serv">
             <?php
                 foreach($price_array as $key => $price) {
@@ -114,7 +110,7 @@ if (mysqli_connect_errno()) {
             ?>
         </div>
         </form>
-        <!-- Pardon me for my inline script testing because browser block my script -->
+
         <script>
 
             var selections = document.querySelectorAll('.selectionButton');
@@ -203,7 +199,6 @@ if (mysqli_connect_errno()) {
             function cart(event){
                 console.log(event);
             }
-
 
             document.getElementById('price').addEventListener('click', price, false);
             var L2H = true;

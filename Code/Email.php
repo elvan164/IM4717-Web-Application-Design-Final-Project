@@ -22,17 +22,13 @@ if (mysqli_connect_errno()) {
         $unit_no = $key['unit_no'];
         $postal_code = $key['postal_code'];
     }
-
-
     $total_price = $_SESSION['total_price']; 
     
-    
-    $date = date("Y-m-d H:i:s");// current date
+    $date = date("Y-m-d H:i:s");
 
     $insert_order = "INSERT INTO Customer_Orders VALUES (NULL,'$user_id','$date','$total_price')";
     
     $db->query($insert_order);
-    //returns id of recently inserted row
     $order_id = $db->insert_id;
 
     $message = "Greetings from Home Electronics ".$name.".\n";
@@ -50,7 +46,6 @@ if (mysqli_connect_errno()) {
         $product_price = $key["price"];
         }
         
-
         $message .= "\nProduct Name: ".$name."\nQuantity: ".$qty."\n";
         
         $insert_product_order = "INSERT INTO Product_Orders VALUES (NULL,$order_id,$product_id,$qty,$product_price)";
@@ -59,11 +54,8 @@ if (mysqli_connect_errno()) {
     }
     $message .= "\nTotal Price: $".$total_price."\n\n";
 
-    //unset cart session
     unset($_SESSION['cart']);
     $_SESSION['cart'] = array();
-
-    //send mail 
 
     $message .= "Items will be sent to: ".$address.", Singapore ".$postal_code;
     $message .= "\nThanks for shopping with us!";
@@ -76,6 +68,4 @@ if (mysqli_connect_errno()) {
 
     echo "<script>alert('Your order is successful, a confirmation email will be sent to you shortly.')</script>";
     echo "<script>location.href='Orderhistory.php'</script>";
-
-
 ?>

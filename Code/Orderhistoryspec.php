@@ -32,8 +32,6 @@ if (mysqli_connect_errno()) {
             $order_name_array[$key["id"]] = $key["name"];
         }
 
-        
-        
         $total_price = 0.00;
     
         if (isset($_GET["update"])){
@@ -67,9 +65,7 @@ if (mysqli_connect_errno()) {
                 <?php if ($_SESSION['is_valid'] == true){?>
                     <li class='right'><a href="Logout.php">Logout</a></li>
                     <?php
-			    }?>
-                
-                
+			    }?> 
             </ul>
         </div>
     </head>
@@ -84,12 +80,10 @@ if (mysqli_connect_errno()) {
             </div>
             <div class='cart-items'>
                     <?php
-                    
                         foreach($order_array as $product_id => $quantity){
                             $id = $order_name_array[$product_id];
                             $name = str_replace("_", " ", $id);
                             $qty = $order_array[$key];
-                            
                     ?>
                             <div class='flexible'>
                                 <div class='cart-img'>
@@ -105,11 +99,8 @@ if (mysqli_connect_errno()) {
                                     $total_price += $total_item_price;
                                     echo number_format($total_item_price,2)?> 
                                 </div>
-                                
                             </div>
-                    <?php   
-                         }
-                    ?>
+                    <?php}?>
             </div>
             <div class='totalPrice'>
                 $<?php echo number_format($total_price,2) ?>

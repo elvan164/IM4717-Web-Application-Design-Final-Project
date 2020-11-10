@@ -8,11 +8,9 @@ if (mysqli_connect_errno()) {
     echo "Error: Could not connect to database.  Please try again later.";
     exit;
  }
-
     $price_array = array();
     $query = "SELECT name,price FROM Product";
     $result  = $db->query($query);
-    
     
     foreach ($result as $key) {
         $price_array[$key["name"]] = $key["price"];
@@ -106,7 +104,7 @@ if (mysqli_connect_errno()) {
                                 </div>
                             </div>
                     <?php  
-                         }
+                        }
                     ?>
             </div>
             <div class='totalPrice'>

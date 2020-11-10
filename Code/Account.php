@@ -38,16 +38,14 @@
             if ($_SESSION['valid_user'] == "admin"){
                 echo "<script>window.location.href='Admin.php'</script>";
             }
-            
             echo "<script>window.location.href='Orderhistory.php'</script>";
-            
         }
     }
+
     else {
         echo "$result->error_log";
         $login_error = 'Login failed. Please try again';
     }
-    
 ?>
 
 <!DOCTYPE html>
