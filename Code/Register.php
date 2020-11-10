@@ -20,11 +20,9 @@
         $name = $_POST['name'];
         $email = $_POST['email'];
         $address = $_POST['address'];
-        $unit_no = $_POST['unit_no'];
         $postal_code = $_POST['postal_code'];
     
 
-        //check if username is already taken or email has already been registered
         $checkExistingUsername = "SELECT * FROM Users WHERE username = '$username'";
         $db -> query($checkExistingUsername);
         if(($db->affected_rows) > 0){
@@ -100,14 +98,14 @@
                         <tr>
                             <td><label for="name" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Name</label></td>
-                            <td><input type="text" name="name" required></td>
+                            <td><input type="text" id="name" name="name" required onChange="nameCheck()"></td>
                         </tr>
                     </div>
                     <div class='seperation'>
                         <tr>
                             <td><label for="email" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Email</label></td>
-                            <td><input type="email" name="email" required></td>
+                            <td><input type="email" id="email" name="email" required></td>
                         </tr>
                     </div>
                     <div class='seperation'>
@@ -119,16 +117,9 @@
                     </div>
                     <div class='seperation'>
                         <tr>
-                            <td><label for="unit_no" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
-                            Unit No.</label></td>
-                            <td><input type="text" name="unit_no" required></td>
-                        </tr>
-                    </div>
-                    <div class='seperation'>
-                        <tr>
                             <td><label for="postal_code" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Postal Code</label></td>
-                            <td><input type="text" name="postal_code" required></td>
+                            <td><input type="text" id="postal" name="postal_code" required onChange="postalCheck()"></td>
                         </tr>
                     </div>
                 </div>
@@ -137,5 +128,32 @@
                 </div>
             </div>
         </form>
+
+        <script type="text/javascript">
+            function nameCheck(){
+                var name = document.getElementById("name").value;
+                var check = name.search(/^[a-zA-Z\s]+$/);
+                if (check!=0){
+                alert("Please enter a valid name! (no special characters or numbers)");
+                }
+            }
+            
+            function postalCheck(){
+                var postal = document.getElementById("postal").value;
+                var check = postal.search(/^[0-9]{1,6}$/);
+                if (check!=0){
+                alert("Please enter a valid postal code!");
+                }
+            }
+
+            function nameCheck(){
+                var name = document.getElementById("name").value;
+                var check = name.search(/^[a-zA-Z\s]+$/);
+                if (check!=0){
+                alert("Please enter a valid name! (no special characters or numbers)");
+                }
+            }
+            
+        </script>
     </body>
 </html>

@@ -7,6 +7,6 @@ create table Users (
     name varchar(255) not null,
     email varchar(255) not null,
     address varchar(255),
-    unit_no varchar(255),
     postal_code varchar(255)
 );
+  

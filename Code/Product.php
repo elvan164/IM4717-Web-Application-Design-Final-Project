@@ -30,10 +30,18 @@ if (mysqli_connect_errno()) {
     }
 
     if (isset($_GET["select"])){
-        $id = $_GET["select"];
-        $amount =(int) $_GET["$id"];
-        if(isset($_SESSION['cart'])){
-        $_SESSION['cart'][$_GET["select"]] += $amount;
+        if ($_SESSION['is_valid'] == false)
+        {
+            echo "<script>window.location.href='Account.php'</script>";
+        }
+        else
+        {
+            $id = $_GET["select"];
+            $amount =(int) $_GET["$id"];
+            if(isset($_SESSION['cart']))
+            {
+            $_SESSION['cart'][$_GET["select"]] += $amount;
+            }
         }
     }
 

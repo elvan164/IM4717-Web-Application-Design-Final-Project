@@ -43,16 +43,17 @@ if (mysqli_connect_errno()) {
     foreach ($_SESSION['cart'] as $id => $qty) {
         $name = str_replace("_", " ", $id);
 
-        $sql = "SELECT id from Product WHERE name='$id'";
+        $sql = "SELECT * from Product WHERE name='$id'";
         $result = $db->query($sql);
         foreach ($result as $key){
         $product_id = $key["id"];
+        $product_price = $key["price"];
         }
         
 
         $message .= "\nProduct Name: ".$name."\nQuantity: ".$qty."\n";
         
-        $insert_product_order = "INSERT INTO Product_Orders VALUES (NULL,$order_id,$product_id,$qty)";
+        $insert_product_order = "INSERT INTO Product_Orders VALUES (NULL,$order_id,$product_id,$qty,$product_price)";
         
         $db->query($insert_product_order);
     }

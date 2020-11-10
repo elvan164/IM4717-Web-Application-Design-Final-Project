@@ -2,6 +2,7 @@
 
 session_start();
 
+
 @ $db = new mysqli('localhost', 'f36ee', 'f36ee', 'f36ee');
 
 if (mysqli_connect_errno()) {
@@ -9,42 +10,31 @@ if (mysqli_connect_errno()) {
     exit;
  }
 
+foreach ($_GET as $key => $val) {
+    $update_array[$key] = $val;
+}
+
+foreach ($update_array as $key => $value) {
+    if(isset($value)){
+        $query = "UPDATE Product SET price=$value WHERE name=\"$key\"";
+        $result = $db->query($query);
+    }
+}
+
     $price_array = array();
-    $query = "SELECT name,price FROM Product";
+    $category_array = array();
+    $query = "SELECT name,price,category FROM Product";
     $result  = $db->query($query);
     
     
     foreach ($result as $key) {
         $price_array[$key["name"]] = $key["price"];
+        $category_array[$key["name"]] = $key["category"];
     }
     
-    $total_price = 0.00;
-
-    if (isset($_GET["update"])){
-        $id = $_GET["update"];
-        $amount =(int) $_GET["$id"];
-        if(isset($_SESSION['cart'])){
-        $_SESSION['cart'][$_GET["update"]] = $amount;
-        }
-        if ($_SESSION['cart'][$_GET["update"]] == 0){
-            unset($_SESSION['cart'][$_GET["update"]]);
-        }
-    }
-    $_SESSION['total_price'] = 0.00;
-    if (isset($_GET["order"])){
-        if ($_SESSION['is_valid'] == false)
-        {
-            echo "<script>window.location.href='Account.php'</script>";
-        }
-        if ($_SESSION['cart'] == NULL)
-        {
-            echo "<script>window.location.href='Product.php'</script>";
-        }
-        else
-        {
-        echo "<script>window.location.href='Submitorder.php'</script>";
-        }
-    }
+    
+    
+    
 
     $db->close();
 
@@ -74,18 +64,18 @@ if (mysqli_connect_errno()) {
     </head>
     <body>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
-            <header>Cart</header>
+            <header>Change Price</header>
             <div class='centralize'>
                 <label>Item</label>
-                <label>Total Price</label>
-                <label>Quantity</label>
+                <label>Old Price</label>
+                <label>New Price</label>
             </div>
             <div class='cart-items'>
                     <?php
                     
-                        foreach($_SESSION['cart'] as $id => $qty){
-                            $name = str_replace("_", " ", $id);
-                    ?>
+                        foreach($price_array as $key => $price) {
+                        $name = str_replace("_", " ", $key);
+                        ?>
                             <div class='flexible'>
                                 <div class='cart-img'>
                                     <img src="images/<?php echo $name?>.jpg" class="img">
@@ -93,13 +83,12 @@ if (mysqli_connect_errno()) {
                                 </div>
                                 <div class='price'> 
                                     $<?php 
-                                    $total_item_price = $price_array[$id] * $qty;
-                                    $total_price += $total_item_price;
-                                    echo number_format($total_item_price,2)?> 
+                                    echo $price_array[$key]?>
                                 </div>
                                 <div class='quantity'>      
                                     <input type="number" class='qtyInput' min='0' max='<?php echo $qty?>'
-                                    name="<?php echo $id?>" value="<?php echo $qty?>">
+                                    name="<?php echo $key?>" value="<?php echo $price_array[$key]?>"
+                                    step="0.01" style="min-width: 5rem;">
 
                                     <button name='update' value ="<?php echo $id?>">
                                     Update</button>
@@ -108,20 +97,6 @@ if (mysqli_connect_errno()) {
                     <?php  
                          }
                     ?>
-            </div>
-            <div class='totalPrice'>
-                $<?php echo number_format($total_price,2) ?>
-                <?php $_SESSION['total_price'] = number_format($total_price,2); ?>
-            </div>
-
-            <div style="text-align: right;padding-bottom: 5rem; width:88%;"> 
-                <button name='order' value ="order" 
-                style= "font-family: 'Staatliches', cursive;
-                text-align: right;
-                margin: 10px 10px 0 0;
-                font-size: 2rem;" >
-                Place Order
-                </button>
             </div>
         </form>
     </body>

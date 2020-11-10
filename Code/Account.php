@@ -3,13 +3,15 @@
     session_start();
 
     @ $db = new mysqli('localhost', 'f36ee', 'f36ee', 'f36ee');
-
     if (mysqli_connect_errno()) {
         echo "Error: Could not connect to database.  Please try again later.";
         exit;
     }
-
+    
     if ($_SESSION['is_valid'] == true){
+        if ($_SESSION['valid_user'] == "admin"){
+            echo "<script>window.location.href='Admin.php'</script>";
+        }
         echo "<script>window.location.href='Orderhistory.php'</script>";
     }
 
@@ -23,8 +25,6 @@
         $result = $db -> query($sql);
         $row = $result -> fetch_assoc();
         
-    
-        //returns a query
         if ($result->num_rows>0){
             session_start();
             $_SESSION['is_valid'] = true;
@@ -34,17 +34,20 @@
     
             echo $row["id"];
             echo $_SESSION["user_id"];
+
+            if ($_SESSION['valid_user'] == "admin"){
+                echo "<script>window.location.href='Admin.php'</script>";
+            }
+            
             echo "<script>window.location.href='Orderhistory.php'</script>";
             
         }
-    
-        else {
-            echo "$result->error_log";
-            $login_error = 'Login failed. Please try again';
-            
-            //redirect to member page
-        }
     }
+    else {
+        echo "$result->error_log";
+        $login_error = 'Login failed. Please try again';
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +82,8 @@
                     <label for="loginPW">Password</label>
                     <input type="password" name='password' id='loginPW' required>
                 </div>
-                <button value='register' class='button'><a href="Register.php" style='text-decoration: none; color:white;'>Register</a></button>
-                <button type="submit" class='button'>Submit</button>
+                <button value='register' class='button'> <a href="Register.php" style='text-decoration: none; color:white;'>Register</a></button>
+                <button type="submit" value="submit" name="submit" class='button'>Submit</button>
             </div>
         </form>
     </body>

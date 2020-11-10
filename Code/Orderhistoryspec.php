@@ -17,6 +17,8 @@ if (mysqli_connect_errno()) {
         $result=$db->query($query);
         foreach($result as $key){
             $order_array[$key["product_id"]] = $key["quantity"];
+            $order_price_array[$key["product_id"]] = $key["price"];
+            echo $order_price_array[$key["product_id"]] ;
         }
 
         $order_name_array = array();
@@ -98,8 +100,8 @@ if (mysqli_connect_errno()) {
                                     <?php echo $quantity?>
                                 </div>
                                 <div class='price'> 
-                                    $<?php 
-                                    $total_item_price = $price_array[$id] * $quantity;
+                                    $<?php
+                                    $total_item_price = $order_price_array[$product_id]* $quantity;
                                     $total_price += $total_item_price;
                                     echo number_format($total_item_price,2)?> 
                                 </div>

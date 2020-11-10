@@ -17,7 +17,6 @@
             $name = $key['name'];
             $email = $key['email'];
             $address = $key['address'];
-            $unit_no = $key['unit_no'];
             $postal_code = $key['postal_code'];
         }
 
@@ -63,27 +62,8 @@
                         </div>
                         <div class='seperation'>
                             <tr>
-                                <td><label for="ccnum" style="padding-right:53px;" >Credit Card No.:</label></td>
-                                <td><input type="text" id='ccnum' placeholder="1111-2222-3333-4444" required></td>
-                            </tr>
-                        </div>
-                        <div class='seperation'>
-                            <tr>
-                                <td><label for="ccnum">Credit Card CVV:</label></td>
-                                <td><input type="text" id='ccnum' placeholder="111" required></td>
-                            </tr>
-                        </div>
-                        <div class='seperation'>
-                            <tr>
                                 <td><label for="ccadd" style="padding-right:112px;">Address:</label></td>
                                 <td><input type="text" id="ccadd" value="<?php echo $address?>"required></td>
-                            </tr>
-                        </div>
-                        <div class='seperation'>
-                            <tr>
-                                <td><label for="ccunit_no" style="padding-right:120px;">
-                                Unit. No:</label></td>
-                                <td><input type="text" id="ccadd" value="<?php echo $unit_no?>"required></td>
                             </tr>
                         </div>
                         <div class='seperation'>
@@ -91,13 +71,6 @@
                                 <td><label for="ccpostal" style="padding-right:80px;">
                                 Postal Code:</label></td>
                                 <td><input type="text" id="ccadd" value="<?php echo $postal_code?>"required></td>
-                            </tr>
-                        </div>
-                        <div class='seperation'>
-                            <tr>
-                                <td><label for="cctel" style="padding-right:122px;">
-                                Number:</label></td>
-                                <td><input type="number" id="cctel" required></td>
                             </tr>
                         </div>
                     </div>
