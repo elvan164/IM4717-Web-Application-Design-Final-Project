@@ -53,7 +53,6 @@ if (mysqli_connect_errno()) {
     <link rel="stylesheet" href="CSS/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-    <script src='Javascript/Cart.js' async></script>
     <head>
         <div class='outernav'>
             <ul class="topnav">

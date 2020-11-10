@@ -18,7 +18,6 @@ if (mysqli_connect_errno()) {
         foreach($result as $key){
             $order_array[$key["product_id"]] = $key["quantity"];
             $order_price_array[$key["product_id"]] = $key["price"];
-            echo $order_price_array[$key["product_id"]] ;
         }
 
         $order_name_array = array();
@@ -65,7 +64,7 @@ if (mysqli_connect_errno()) {
                 <?php if ($_SESSION['is_valid'] == true){?>
                     <li class='right'><a href="Logout.php">Logout</a></li>
                     <?php
-			    }?> 
+			    } ?> 
             </ul>
         </div>
     </head>
@@ -100,7 +99,7 @@ if (mysqli_connect_errno()) {
                                     echo number_format($total_item_price,2)?> 
                                 </div>
                             </div>
-                    <?php}?>
+                    <?php } ?>
             </div>
             <div class='totalPrice'>
                 $<?php echo number_format($total_price,2) ?>

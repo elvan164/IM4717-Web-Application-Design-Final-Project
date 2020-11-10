@@ -49,7 +49,6 @@ if (mysqli_connect_errno()) {
 
 <html lang = "en" class='product'>
     <link rel="stylesheet" href="CSS/style.css">
-    <script src="Product.js" async></script>
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <head>
         <div class='outernav'>

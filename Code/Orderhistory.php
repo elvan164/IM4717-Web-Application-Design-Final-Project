@@ -43,7 +43,7 @@ if (mysqli_connect_errno()) {
                 <li class='right'><a href="Account.php">Account</a></li>
                 <?php if ($_SESSION['is_valid'] == true){?>
                     <li class='right'><a href="Logout.php">Logout</a></li>
-                <?php}?>
+                <?php } ?>
             </ul>
         </div>
     </head>
