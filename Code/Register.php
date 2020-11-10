@@ -145,14 +145,6 @@
                 alert("Please enter a valid postal code!");
                 }
             }
-
-            function nameCheck(){
-                var name = document.getElementById("name").value;
-                var check = name.search(/^[a-zA-Z\s]+$/);
-                if (check!=0){
-                alert("Please enter a valid name! (no special characters or numbers)");
-                }
-            }
             
         </script>
     </body>

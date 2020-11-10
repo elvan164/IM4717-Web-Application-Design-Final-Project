@@ -48,15 +48,14 @@
         </div>
     </head>
     <body>
-        <body>
-            <header>Submit Order</header>
+        <header>Submit Order</header>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                 <div class='submitOrderField'>
                     <div class='containing'>
                         <div class='seperation'>
                             <tr>
                                 <td><label for="ccname" style="padding-right:143px;">Name:</label></td>
-                                <td><input type="text" id='ccname' value="<?php echo $name?>" required> 
+                                <td><input type="text" id='ccname' value="<?php echo $name?>" required onChange="nameCheck()"> 
                                 </td>
                             </tr>
                         </div>
@@ -70,7 +69,7 @@
                             <tr>
                                 <td><label for="ccpostal" style="padding-right:80px;">
                                 Postal Code:</label></td>
-                                <td><input type="text" id="ccadd" value="<?php echo $postal_code?>"required></td>
+                                <td><input type="text" id="ccadd" value="<?php echo $postal_code?>"required onChange="postalCheck()"></td>
                             </tr>
                         </div>
                     </div>
@@ -79,6 +78,24 @@
                     </div>
                 </div>
             </form>
-        </body>
+            
+            <script type="text/javascript">
+            function nameCheck(){
+                var name = document.getElementById("name").value;
+                var check = name.search(/^[a-zA-Z\s]+$/);
+                if (check!=0){
+                alert("Please enter a valid name! (no special characters or numbers)");
+                }
+            }
+            
+            function postalCheck(){
+                var postal = document.getElementById("postal").value;
+                var check = postal.search(/^[0-9]{1,6}$/);
+                if (check!=0){
+                alert("Please enter a valid postal code!");
+                }
+            }
+            
+        </script>
     </body>
 </html>
