@@ -30,7 +30,7 @@
         } 
         
         else {
-            $sql = "INSERT INTO Users(username, password, name, email, address, unit_no, postal_code) VALUES ('$username', '$password', '$name', '$email', '$address', '$unit_no', '$postal_code')";
+            $sql = "INSERT INTO Users(username, password, name, email, address, postal_code) VALUES ('$username', '$password', '$name', '$email', '$address', '$postal_code')";
             $result = $db -> query($sql);
         
             $sql = "SELECT * from Users WHERE username='$username' and password='$password'";
@@ -118,7 +118,7 @@
                         <tr>
                             <td><label for="postal_code" style="width:200px; padding:1rem 0px 1rem 0px; display:inline-block; text-align:center;">
                             Postal Code</label></td>
-                            <td><input type="text" id="postal" name="postal_code" required onChange="postalCheck()"></td>
+                            <td><input type="text" id="postal_code" name="postal_code" required onChange="postalCheck()"></td>
                         </tr>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
             }
             
             function postalCheck(){
-                var postal = document.getElementById("postal").value;
+                var postal = document.getElementById("postal_code").value;
                 var check = postal.search(/^[0-9]{1,6}$/);
                 if (check!=0){
                 alert("Please enter a valid postal code!");

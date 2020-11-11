@@ -101,7 +101,8 @@ if (mysqli_connect_errno()) {
                             </div>
                     <?php } ?>
             </div>
-            <div class='totalPrice'>
+            <div style="font-family: 'Staatliches', cursive; 
+            text-align: right; width: 84.7%;font-size: 2rem;">
                 $<?php echo number_format($total_price,2) ?>
                 <?php $_SESSION['total_price'] = number_format($total_price,2); ?>
             </div>

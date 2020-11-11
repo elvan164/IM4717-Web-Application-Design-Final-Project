@@ -49,7 +49,7 @@ if (mysqli_connect_errno()) {
     </head>
     <body>
         <header>View Status of your order</header>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="GET" style="text-align:center;">
             <h2>Order Number</h2>
             <input type="text"  name="order_no" id="" style="width:750px">
             <h2 class='belowTxt'>You can find this in the order confirmation email we sent you when you placed the order.</h2>
