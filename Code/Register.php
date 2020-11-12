@@ -42,6 +42,7 @@
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['valid_user'] = $username;
             $_SESSION['cart'] = array();
+			$_SESSION['is_valid'] = true;
             echo "<script>alert('Successfully registered ".$username."')</script>";
             echo "<script>location.href='Home.php'</script>";
         }
